@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Symfony\Component\String\u;
 
 class UserController
 {
@@ -14,8 +15,14 @@ class UserController
     }
 
     #[Route('/browse/{slug}')]
-    public function browse($slug) : Response
+    public function browse(string $slug = null) : Response
     {
-        return new Response('Title :'.$slug);
+        if($slug) {
+            $title = 'User: '.u(str_replace('-', ' ', $slug))->title(true);
+        }
+        else {
+            $title = 'All Users';
+        }
+        return new Response($title);
     }
 }
