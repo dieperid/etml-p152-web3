@@ -1,0 +1,13 @@
+<h1>{{ title }}</h1>
+
+<div>
+    Shoes :
+    <ul>
+        {% for shoe in shoes  %}
+            <li>
+                {{ shoe.shoe }} - {{ shoe.artist }}
+            </li>
+        {% endfor %}
+    </ul>
+
+</div>
