@@ -20,7 +20,7 @@ class User
     private ?string $password = null;
 
     #[ORM\Column(length: 1, nullable: true)]
-    private ?bool $rights = null;
+    private ?int $rights = null;
 
     public function getId(): ?int
     {
@@ -51,12 +51,12 @@ class User
         return $this;
     }
 
-    public function getRights(): ?string
+    public function getRights(): ?int
     {
         return $this->rights;
     }
 
-    public function setRights(?string $rights): self
+    public function setRights(?int $rights): self
     {
         $this->rights = $rights;
 
