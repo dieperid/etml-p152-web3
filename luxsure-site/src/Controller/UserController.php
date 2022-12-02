@@ -2,38 +2,42 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function Symfony\Component\String\u;
 
 class UserController extends AbstractController
 {
-    #[Route('/')]
-    public function homepage() : Response
+    #[Route('/user', name: 'app_user')]
+    public function createUser(ManagerRegistry $doctrine, string $username, string $password, int $rights): Response
     {
-        $shoes = [
-            ['shoe' => 'Air Force 1', 'artist' => 'David'],
-            ['shoe' => 'Jordan 4', 'artist' => 'David'],
-            ['shoe' => 'New Balance 2002R', 'artist' => 'David'],
-            ['shoe' => 'Air Max Plus TN', 'artist' => 'David'],
-        ];
+        $entityManager = $doctrine->getManager();
 
-       return $this->render('user/user.html.twig', [
-           'title' => 'Luxsure Shoes',
-           'shoes' => $shoes,
-       ]);
+        $user = new User();
+        $user->setUsername($username);
+        $user->setPassword($password);
+        $user->setRights($rights);
+
+        // tell Doctrine to save the user
+        $entityManager->persist($user);
+        // execute the query
+        $entityManager->flush();
+
+        return new Response('Savec new user with id :'.$user->getId());
     }
 
-    #[Route('/browse/{slug}')]
-    public function browse(string $slug = null) : Response
+    #[Route('/user/edit/{id}', name: 'user_edit')]
+    public function updateUser(ManagerRegistry $doctrine, int $id)
     {
-        if($slug) {
-            $title = 'User: '.u(str_replace('-', ' ', $slug))->title(true);
+        $entityManager = $doctrine->getManager();
+        $user = $entityManager->getRepository(User::class)->find($id);
+
+        if(!$user){
+            throw $this->createNotFoundException(
+                'No user found for id $id'
+            );
         }
-        else {
-            $title = 'All Users';
-        }
-        return new Response($title);
     }
 }
