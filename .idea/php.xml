@@ -131,6 +131,7 @@
       <path value="$PROJECT_DIR$/luxsure-site/vendor/phpunit/php-invoker" />
       <path value="$PROJECT_DIR$/luxsure-site/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/luxsure-site/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/luxsure-site/vendor/symfony/webpack-encore-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
