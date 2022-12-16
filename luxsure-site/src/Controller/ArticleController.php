@@ -10,6 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
+    /**
+     * Function to create an article
+     * @param ManagerRegistry $doctrine
+     * @param string $name
+     * @param string $description
+     * @param float $price
+     * @param int $quantity
+     * @param string $image
+     * @return Response
+     */
     #[Route('/article', name: 'create_article')]
     public function createArticle(ManagerRegistry $doctrine, string $name, string $description, float $price, int $quantity, string $image): Response
     {
