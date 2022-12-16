@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ETML
+ * Auteur : David Dieperink, Stefan Petrovic, Noa Chouriberry
+ * Date : 16.12.2022
+ * Description : Class for the user table data
+ */
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
