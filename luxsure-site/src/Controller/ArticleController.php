@@ -40,6 +40,12 @@ class ArticleController extends AbstractController
         return new Response('Savec new article with id :'.$article->getId());
     }
 
+    /**
+     * Function to update an article
+     * @param ManagerRegistry $doctrine
+     * @param int $id
+     * @return void
+     */
     #[Route('/article/edit/{id}', name: 'article_edit')]
     public function updateArticle(ManagerRegistry $doctrine, int $id)
     {
