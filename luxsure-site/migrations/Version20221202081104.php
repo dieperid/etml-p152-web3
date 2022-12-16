@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ETML
+ * Auteur : David Dieperink, Stefan Petrovic, Noa Chouriberry
+ * Date : 16.12.2022
+ * Description : Class for the migrations
+ */
+
 declare(strict_types=1);
 
 namespace DoctrineMigrations;

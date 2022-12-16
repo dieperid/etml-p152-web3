@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ETML
+ * Auteur : David Dieperink, Stefan Petrovic, Noa Chouriberry
+ * Date : 16.12.2022
+ * Description : Class for the article controller
+ */
+
 namespace App\Controller;
 
 use App\Entity\Article;
@@ -10,6 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
+    /**
+     * Function to create an article
+     * @param ManagerRegistry $doctrine
+     * @param string $name
+     * @param string $description
+     * @param float $price
+     * @param int $quantity
+     * @param string $image
+     * @return Response
+     */
     #[Route('/article', name: 'create_article')]
     public function createArticle(ManagerRegistry $doctrine, string $name, string $description, float $price, int $quantity, string $image): Response
     {
@@ -30,6 +47,12 @@ class ArticleController extends AbstractController
         return new Response('Savec new article with id :'.$article->getId());
     }
 
+    /**
+     * Function to update an article
+     * @param ManagerRegistry $doctrine
+     * @param int $id
+     * @return void
+     */
     #[Route('/article/edit/{id}', name: 'article_edit')]
     public function updateArticle(ManagerRegistry $doctrine, int $id)
     {
